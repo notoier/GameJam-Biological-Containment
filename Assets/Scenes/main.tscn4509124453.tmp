@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvcs8rytilv66"]
+
+[ext_resource type="Script" uid="uid://cht7yr4i0py30" path="res://Assets/Scripts/Main/Main.gd" id="1_f8o6k"]
+[ext_resource type="PackedScene" uid="uid://b3ls64fhpvx1c" path="res://Assets/Scenes/Rooms/Laboratory.tscn" id="2_elf4b"]
+[ext_resource type="PackedScene" uid="uid://vr48ac87h2dt" path="res://Assets/Scenes/Characters/main_character.tscn" id="2_qplxx"]
+[ext_resource type="PackedScene" uid="uid://4r06mqsja61" path="res://Assets/Scenes/Rooms/RoomCorridor.tscn" id="4_guoxd"]
+[ext_resource type="PackedScene" uid="uid://h6or6p71dekp" path="res://Assets/Scenes/Rooms/RoomCross.tscn" id="4_rvsrt"]
+[ext_resource type="PackedScene" uid="uid://cvvuh7hyjcyp" path="res://Assets/Scenes/Rooms/CoreRoom.tscn" id="5_acsc0"]
+[ext_resource type="PackedScene" uid="uid://mo762c2jyeeu" path="res://Assets/Scenes/Characters/monster.tscn" id="5_rvsrt"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_f8o6k")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="SpecialRooms" type="Node2D" parent="Rooms"]
+
+[node name="Lab" parent="Rooms/SpecialRooms" instance=ExtResource("2_elf4b")]
+z_index = 1
+room_name = "Laboratory"
+
+[node name="CoreRoom" parent="Rooms/SpecialRooms" instance=ExtResource("5_acsc0")]
+z_index = 1
+position = Vector2(-145, 2077)
+
+[node name="ConectorRooms" type="Node2D" parent="Rooms"]
+
+[node name="room_corridor" parent="Rooms/ConectorRooms" instance=ExtResource("4_guoxd")]
+z_index = 1
+position = Vector2(-49, 496)
+room_name = "Corridor A"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="room_cross" parent="Rooms/ConectorRooms" instance=ExtResource("4_rvsrt")]
+z_index = 1
+position = Vector2(96, 877)
+room_name = "Cross A"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="player" parent="." instance=ExtResource("2_qplxx")]
+z_index = 3
+position = Vector2(230, 688)
+scale = Vector2(4, 4)
+collision_layer = 5
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(0, -0.75)
+zoom = Vector2(1.15, 1.15)
+limit_smoothed = true
+
+[node name="Monster" parent="." instance=ExtResource("5_rvsrt")]
+z_index = 3
+position = Vector2(-869, 847)
+scale = Vector2(2.5, 2.5)
+collision_mask = 2

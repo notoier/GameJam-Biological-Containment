@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=4 uid="uid://h6or6p71dekp"]
+
+[ext_resource type="TileSet" uid="uid://b5b65cc2hovvh" path="res://Assets/Sprites/TileSets/LabRoom.tres" id="1_amusf"]
+[ext_resource type="Script" uid="uid://bb0ws1xbutim5" path="res://Assets/Scripts/Rooms/RoomManager.gd" id="1_kv3of"]
+[ext_resource type="PackedScene" uid="uid://cn8bjrlx4u5ym" path="res://Assets/Scenes/Objects/puerta_vertical.tscn" id="3_8n5qc"]
+
+[sub_resource type="Gradient" id="Gradient_bsh6n"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.987013, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.753247, 0.753247, 0.753247, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bsh6n"]
+noise_type = 5
+seed = 3
+frequency = 1.0
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_orop1"]
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 0.0
+color_ramp = SubResource("Gradient_bsh6n")
+noise = SubResource("FastNoiseLite_bsh6n")
+
+[node name="room_cross" type="Node2D" groups=["Rooms"]]
+script = ExtResource("1_kv3of")
+
+[node name="TileMap" type="Node2D" parent="."]
+
+[node name="Ceiling Walls" type="TileMapLayer" parent="TileMap"]
+z_index = 3
+tile_map_data = PackedByteArray("AAAfAA0AAwACAAAAABAcAA0AAwACAAAAABAZAA0AAwACAAAAABAWAA0AAwACAAAAABAfABwAAwABAAkAABAcABwAAwABAAkAABAZABwAAwABAAkAABAWABwAAwABAAkAABD1/w0AAwACAAAAAAD1/xwAAwABAAkAAAD4/xwAAwABAAkAAAD7/w0AAwACAAAAAAD7/xwAAwABAAkAAAD+/w0AAwACAAAAAAD+/xwAAwABAAkAAAABACUAAwAAAAgAACATACUAAwAEAAEAACABACIAAwAAAAgAACATACIAAwAEAAEAACABAB8AAwAAAAgAACATAB8AAwAEAAEAACABAAQAAwAAAAgAAAABAAcAAwAAAAgAAAABAAoAAwAAAAgAAAAEAAEAAwACAAAAAAAHAAEAAwACAAAAAAAKAAEAAwACAAAAAAANAAEAAwACAAAAAAAQAAEAAwACAAAAAAATAAEAAwAKAAgAAAATAAQAAwAEAAEAAAATAAcAAwAEAAEAAAATAAoAAwAEAAEAAAAEACgAAwABAAkAAAAHACgAAwABAAkAAAAKACgAAwABAAkAAAANACgAAwABAAkAAAAQACgAAwABAAkAAAABACsAAwAAAAoAAAABAC4AAwAAAAsAAAATAC4AAwAAAAsAABATACsAAwAAAAoAABD4/w0AAwACAAAAAAABABwAAwAHAAcAAAATABwAAwAHAAcAABABAA0AAwABAAUAAAATAA0AAwABAAUAABABAAEAAwAKAAkAAAATACgAAwACAAcAAAABACgAAwACAAcAABAiAA0AAwAKAAMAAADy/w0AAwAKAAAAAADy/xwAAwALAAAAAAAiABwAAwALAAAAABA=")
+tile_set = ExtResource("1_amusf")
+
+[node name="Inside Walls" type="TileMapLayer" parent="TileMap"]
+z_index = 1
+tile_map_data = PackedByteArray("AAAZABAAAwAGAAIAAAAZABMAAwAGAAMAAAAcABAAAwAGAAIAAAAcABMAAwAGAAMAAAAfABAAAwAHAAIAAAAfABMAAwAHAAMAAAD1/xAAAwAFAAIAAAD1/xMAAwAFAAMAAAD4/xAAAwAGAAIAAAD4/xMAAwAGAAMAAAD7/xAAAwAGAAIAAAD7/xMAAwAGAAMAAADy/xMAAwAKAAIAAAATABMAAwALAAQAAAATABAAAwALAAMAAAABABMAAwALAAYAAAABABAAAwALAAUAAAD+/xMAAwAGAAMAAAAWABMAAwAGAAMAAAD+/xAAAwAGAAIAAAAWABAAAwAGAAIAAADy/xAAAwAKAAEAAAAiABMAAwAKAAUAAAAiABAAAwAKAAQAAAA=")
+tile_set = ExtResource("1_amusf")
+
+[node name="Outside Walls" type="TileMapLayer" parent="TileMap"]
+z_index = 5
+tile_map_data = PackedByteArray("AADy/x8AAwAAAAoAAAD1/x8AAwABAAoAAAD4/x8AAwABAAoAAAD7/x8AAwABAAoAAAD+/x8AAwABAAoAAAAiAB8AAwAAAAoAABAfAB8AAwABAAoAABAcAB8AAwABAAoAABAZAB8AAwABAAoAABAWAB8AAwABAAoAABDy/yIAAwAAAAsAAAD1/yIAAwABAAsAAAD4/yIAAwABAAsAAAD7/yIAAwABAAsAAAD+/yIAAwABAAsAAAAWACIAAwABAAsAAAAZACIAAwABAAsAAAAcACIAAwABAAsAAAAfACIAAwABAAsAAAAiACIAAwAAAAsAABA=")
+tile_set = ExtResource("1_amusf")
+
+[node name="Decoration" type="TileMapLayer" parent="TileMap"]
+z_index = 2
+tile_set = ExtResource("1_amusf")
+
+[node name="Floor" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAD1/xYAAgAIAAoAAAD1/xkAAgAIAAsAAAD4/xYAAgAJAAoAAAD4/xkAAgAJAAsAAAD7/xYAAgAKAAoAAAD7/xkAAgAKAAsAAAD+/xYAAgAIAAoAAAD+/xkAAgAIAAsAAAABABYAAgAJAAoAAAABABkAAgAJAAsAAAAHABYAAgAIAAoAAAAHABkAAgAIAAsAAAAKABYAAgAJAAoAAAAKABkAAgAJAAsAAAANABYAAgAKAAoAAAANABkAAgAKAAsAAAATABYAAgAJAAoAAAATABkAAgAJAAsAAAAWABYAAgAKAAoAAAAWABkAAgAKAAsAAAAZABYAAgAIAAoAAAAZABkAAgAIAAsAAAAcABYAAgAJAAoAAAAcABkAAgAJAAsAAAAfABYAAgAKAAoAAAAfABkAAgAKAAsAAAAHABAAAgAIAAoAAAAHABMAAgAIAAsAAAAKABAAAgAJAAoAAAAKABMAAgAJAAsAAAANABAAAgAKAAoAAAANABMAAgAKAAsAAAAHAAoAAgAIAAoAAAAHAA0AAgAIAAsAAAAKAAoAAgAJAAoAAAAKAA0AAgAJAAsAAAANAAoAAgAKAAoAAAANAA0AAgAKAAsAAAAHAAQAAgAIAAoAAAAHAAcAAgAIAAsAAAAKAAQAAgAJAAoAAAAKAAcAAgAJAAsAAAANAAQAAgAKAAoAAAANAAcAAgAKAAsAAAAHABwAAgAIAAoAAAAHAB8AAgAIAAsAAAAKABwAAgAJAAoAAAAKAB8AAgAJAAsAAAANABwAAgAKAAoAAAANAB8AAgAKAAsAAAAHACIAAgAIAAoAAAAHACUAAgAIAAsAAAAKACIAAgAJAAoAAAAKACUAAgAJAAsAAAANACIAAgAKAAoAAAANACUAAgAKAAsAAAAHACsAAgAIAAsAAAAKACsAAgAJAAsAAAANACsAAgAKAAsAAAAEABYAAgAKAAoAAAAEABkAAgAKAAsAAAAEABwAAgAKAAoAAAAEAB8AAgAKAAsAAAAEACIAAgAKAAoAAAAEACUAAgAKAAsAAAAEACsAAgAKAAsAAAAEABAAAgAKAAoAAAAEABMAAgAKAAsAAAAEAAoAAgAKAAoAAAAEAA0AAgAKAAsAAAAEAAQAAgAKAAoAAAAEAAcAAgAKAAsAAAAQABYAAgAIAAoAAAAQABkAAgAIAAsAAAAQABAAAgAIAAoAAAAQABMAAgAIAAsAAAAQAAoAAgAIAAoAAAAQAA0AAgAIAAsAAAAQAAQAAgAIAAoAAAAQAAcAAgAIAAsAAAAQABwAAgAIAAoAAAAQAB8AAgAIAAsAAAAQACIAAgAIAAoAAAAQACUAAgAIAAsAAAAQACsAAgAIAAsAAAACAC0AAgACAAAAAAACADAAAgACAAEAAAAFAC0AAgADAAAAAAAFADAAAgADAAEAAAAIAC0AAgAEAAAAAAAIADAAAgAEAAEAAAALAC0AAgAFAAAAAAALADAAAgAFAAEAAAAOAC0AAgAGAAAAAAAOADAAAgAGAAEAAAARAC0AAgAHAAAAAAARADAAAgAHAAEAAAA=")
+tile_set = ExtResource("1_amusf")
+
+[node name="Details" type="TileMapLayer" parent="TileMap/Floor"]
+z_index = -9
+tile_map_data = PackedByteArray("AAAhABMAAgAAAAIAAAAhABYAAgAAAAMAAAAhABkAAgAAAAQAAAAhABwAAgAAAAUAAAAhAB8AAgAAAAYAAAAkABMAAgABAAIAAAAkABYAAgABAAMAAAAkABkAAgABAAQAAAAkABwAAgABAAUAAAAkAB8AAgABAAYAAADz/xMAAgAAAAIAABDw/xMAAgABAAIAABDz/xYAAgAAAAMAABDw/xYAAgABAAMAABDz/xkAAgAAAAQAABDw/xkAAgABAAQAABDz/xwAAgAAAAUAABDw/xwAAgABAAUAABDz/x8AAgAAAAYAABDw/x8AAgABAAYAABA=")
+tile_set = ExtResource("1_amusf")
+
+[node name="EnemyDetectionZone" type="Area2D" parent="."]
+visible = false
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyDetectionZone"]
+position = Vector2(191.392, 0)
+scale = Vector2(0.139539, 1)
+polygon = PackedVector2Array(-1034.78, 275, -1350.11, 273, -1371.61, 239, -2776.23, 237, -2733.24, 430, -1378.77, 432, -1371.61, 399, -1027.62, 401, -1049.12, 762, 699.502, 764, 685.169, 400, 1036.33, 400, 1043.49, 432, 2419.45, 434, 2412.29, 237, 1000.49, 234, 1000.49, 273, 706.668, 274, 699.502, 43, -1056.28, 47)
+
+[node name="RoomLight" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D5" type="PointLight2D" parent="RoomLight"]
+position = Vector2(-97.1704, 334.477)
+scale = Vector2(0.379572, 0.383572)
+color = Color(0.884577, 0.183887, 0.130483, 1)
+energy = 2.4
+blend_mode = 2
+shadow_color = Color(0.025978, 0.0419082, 0.0372941, 0)
+shadow_filter = 1
+texture = SubResource("NoiseTexture2D_orop1")
+
+[node name="PointLight2D4" type="PointLight2D" parent="RoomLight"]
+position = Vector2(169, 158.45)
+scale = Vector2(0.473273, 0.455273)
+color = Color(0.884577, 0.183887, 0.130483, 1)
+energy = 2.4
+blend_mode = 2
+shadow_color = Color(0.025978, 0.0419082, 0.0372941, 0)
+shadow_filter = 1
+texture = SubResource("NoiseTexture2D_orop1")
+
+[node name="PointLight2D6" type="PointLight2D" parent="RoomLight"]
+position = Vector2(169, 512.025)
+scale = Vector2(0.473273, 0.449316)
+color = Color(0.884577, 0.183887, 0.130483, 1)
+energy = 2.4
+blend_mode = 2
+shadow_color = Color(0.025978, 0.0419082, 0.0372941, 0)
+shadow_filter = 1
+texture = SubResource("NoiseTexture2D_orop1")
+
+[node name="PointLight2D7" type="PointLight2D" parent="RoomLight"]
+position = Vector2(432.335, 336)
+scale = Vector2(0.380216, 0.383572)
+color = Color(0.884577, 0.183887, 0.130483, 1)
+energy = 2.4
+blend_mode = 2
+shadow_color = Color(0.025978, 0.0419082, 0.0372941, 0)
+shadow_filter = 1
+texture = SubResource("NoiseTexture2D_orop1")
+
+[node name="PointLight2D8" type="PointLight2D" parent="RoomLight"]
+position = Vector2(168, 337)
+scale = Vector2(0.65625, 0.242188)
+color = Color(0.884577, 0.183887, 0.130483, 1)
+energy = 2.4
+blend_mode = 2
+shadow_color = Color(0.025978, 0.0419082, 0.0372941, 0)
+shadow_filter = 1
+texture = SubResource("NoiseTexture2D_orop1")
+
+[node name="Doors" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Right" parent="Doors" instance=ExtResource("3_8n5qc")]
+position = Vector2(550, 341)
+
+[node name="Left" parent="Doors" instance=ExtResource("3_8n5qc")]
+position = Vector2(-215, 341)
+
+[connection signal="body_entered" from="EnemyDetectionZone" to="." method="_on_enemy_detection_zone_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionZone" to="." method="_on_enemy_detection_zone_body_exited"]

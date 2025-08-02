@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvcs8rytilv66"]
+
+[ext_resource type="PackedScene" uid="uid://b3ls64fhpvx1c" path="res://Assets/Scenes/room_large.tscn" id="2_elf4b"]
+[ext_resource type="PackedScene" uid="uid://vr48ac87h2dt" path="res://Assets/Scenes/main_character.tscn" id="2_qplxx"]
+[ext_resource type="PackedScene" uid="uid://4r06mqsja61" path="res://Assets/Scenes/room_corridor.tscn" id="4_guoxd"]
+[ext_resource type="PackedScene" uid="uid://h6or6p71dekp" path="res://Assets/Scenes/room_cross.tscn" id="4_rvsrt"]
+[ext_resource type="PackedScene" uid="uid://mo762c2jyeeu" path="res://Assets/Scenes/monster.tscn" id="5_rvsrt"]
+[ext_resource type="Script" uid="uid://dmq425q62wa6w" path="res://Assets/Scenes/button.gd" id="6_nacht"]
+
+[node name="Main" type="Node2D"]
+
+[node name="room_large" parent="." instance=ExtResource("2_elf4b")]
+z_index = 1
+
+[node name="room_corridor" parent="." instance=ExtResource("4_guoxd")]
+z_index = 1
+position = Vector2(-49, 496)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="room_cross" parent="." instance=ExtResource("4_rvsrt")]
+z_index = 1
+position = Vector2(96, 877)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="player" parent="." instance=ExtResource("2_qplxx")]
+z_index = 3
+position = Vector2(230, 688)
+scale = Vector2(4, 4)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(0, -0.75)
+zoom = Vector2(1.25, 1.25)
+limit_left = -120
+limit_top = -120
+limit_smoothed = true
+
+[node name="Monster" parent="." instance=ExtResource("5_rvsrt")]
+z_index = 3
+position = Vector2(284, 433)
+scale = Vector2(2.5, 2.5)
+collision_mask = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("6_nacht")
+
+[node name="Button" type="Button" parent="Node2D"]
+z_index = 7
+offset_left = 386.0
+offset_top = -5.0
+offset_right = 660.0
+offset_bottom = 111.0
+text = "EXIT 
+"

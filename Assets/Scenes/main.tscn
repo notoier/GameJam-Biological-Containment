@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvcs8rytilv66"]
+
+[ext_resource type="Script" uid="uid://cht7yr4i0py30" path="res://Assets/Scripts/Main/Main.gd" id="1_f8o6k"]
+[ext_resource type="PackedScene" uid="uid://b3ls64fhpvx1c" path="res://Assets/Scenes/Rooms/Laboratory.tscn" id="2_elf4b"]
+[ext_resource type="PackedScene" uid="uid://vr48ac87h2dt" path="res://Assets/Scenes/Characters/player.tscn" id="2_qplxx"]
+[ext_resource type="PackedScene" uid="uid://4r06mqsja61" path="res://Assets/Scenes/Rooms/ConectorA.tscn" id="4_guoxd"]
+[ext_resource type="PackedScene" uid="uid://h6or6p71dekp" path="res://Assets/Scenes/Rooms/CrossConectorA.tscn" id="4_rvsrt"]
+[ext_resource type="PackedScene" uid="uid://cvvuh7hyjcyp" path="res://Assets/Scenes/Rooms/CoreRoom.tscn" id="5_acsc0"]
+[ext_resource type="PackedScene" uid="uid://bje5w65ntg7hu" path="res://Assets/Scenes/Rooms/ServerRoom.tscn" id="5_f1jyc"]
+[ext_resource type="PackedScene" uid="uid://mo762c2jyeeu" path="res://Assets/Scenes/Characters/monster.tscn" id="5_rvsrt"]
+[ext_resource type="PackedScene" uid="uid://dcshcbxqymoff" path="res://Assets/Scenes/Rooms/TShapeConectorA.tscn" id="7_4357x"]
+[ext_resource type="PackedScene" uid="uid://cc5vdbonl30vm" path="res://Assets/Scenes/Rooms/SecurityRoom.tscn" id="8_f8o6k"]
+[ext_resource type="PackedScene" uid="uid://btpwmmyxf27mm" path="res://Assets/Scenes/Rooms/ConectorB.tscn" id="9_vlji8"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_f8o6k")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="SpecialRooms" type="Node2D" parent="Rooms"]
+
+[node name="Lab" parent="Rooms/SpecialRooms" instance=ExtResource("2_elf4b")]
+room_name = "Laboratory"
+
+[node name="CoreRoom" parent="Rooms/SpecialRooms" instance=ExtResource("5_acsc0")]
+position = Vector2(3697, -863)
+metadata/_edit_lock_ = true
+
+[node name="Security Room" parent="Rooms/SpecialRooms" instance=ExtResource("8_f8o6k")]
+position = Vector2(1057, -902)
+room_name = "Security Room"
+
+[node name="Server Room" parent="Rooms/SpecialRooms" instance=ExtResource("5_f1jyc")]
+position = Vector2(5857, -911)
+metadata/_edit_lock_ = true
+
+[node name="ConectorRooms" type="Node2D" parent="Rooms"]
+position = Vector2(-1, 0)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="T-Shape" type="Node2D" parent="Rooms/ConectorRooms"]
+z_index = 1
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="T Corridor A" parent="Rooms/ConectorRooms/T-Shape" instance=ExtResource("7_4357x")]
+position = Vector2(1826, 1506)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Crosses" type="Node2D" parent="Rooms/ConectorRooms"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Cross A" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(97, 881)
+room_name = "Cross A"
+metadata/_edit_group_ = true
+
+[node name="Cross B" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(1874, 881)
+room_name = "Cross A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Cross C" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(1874, -911)
+room_name = "Cross A"
+metadata/_edit_group_ = true
+
+[node name="EnemyDetectionZone" parent="Rooms/ConectorRooms/Crosses/Cross C" index="1"]
+visible = true
+
+[node name="RoomLight" parent="Rooms/ConectorRooms/Crosses/Cross C" index="2"]
+visible = true
+
+[node name="Left" parent="Rooms/ConectorRooms/Crosses/Cross C/Doors" index="1"]
+visible = false
+
+[node name="Vertical" type="Node2D" parent="Rooms/ConectorRooms"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="V Corridor A" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(-48, 496)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor B" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1729, 494)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor C" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1729, 106)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor D" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1729, -284)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+
+[node name="Horizontal" type="Node2D" parent="Rooms/ConectorRooms"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="H Corridor A" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
+position = Vector2(625, 977)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="H Corridor B" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
+position = Vector2(2402, -815)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="H Corridor C" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
+position = Vector2(4754, -815)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Monster" parent="." instance=ExtResource("5_rvsrt")]
+position = Vector2(-220, 462)
+scale = Vector2(2.5, 2.5)
+collision_mask = 2
+
+[node name="player" parent="." instance=ExtResource("2_qplxx")]
+z_index = 2
+position = Vector2(255, 757)
+scale = Vector2(3.25, 3.25)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.25, 1.25)
+
+[editable path="Rooms/ConectorRooms/Crosses/Cross A"]
+[editable path="Rooms/ConectorRooms/Crosses/Cross C"]

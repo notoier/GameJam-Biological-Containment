@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0b2ch0apo0yr"]
+
+[ext_resource type="Script" uid="uid://b8re5mhq8t84y" path="res://Assets/Scripts/UI/RoomControlUI.gd" id="1_gf4xk"]
+[ext_resource type="Theme" uid="uid://nu1s8xihect8" path="res://Assets/UI/Themes/theme.tres" id="1_gsgf3"]
+
+[node name="RoomControlUI" type="Window"]
+canvas_item_default_texture_filter = 3
+position = Vector2i(0, 36)
+theme = ExtResource("1_gsgf3")
+theme_override_colors/title_color = Color(0.991005, 0.45234, 0.664101, 1)
+theme_override_colors/title_outline_modulate = Color(0.711727, 0.248352, 0.55051, 1)
+script = ExtResource("1_gf4xk")
+
+[node name="RoomList" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 7.39
+anchor_bottom = 4.61
+offset_right = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://ktwmrkd4tvn7"]
+
+[ext_resource type="Theme" uid="uid://nu1s8xihect8" path="res://Assets/UI/Themes/theme.tres" id="1_gtvl3"]
+[ext_resource type="Script" uid="uid://1p2ennhgpnga" path="res://Assets/Scripts/UI/RoomControlPanel.gd" id="1_ph3em"]
+[ext_resource type="Texture2D" uid="uid://jmgx51x2ai1e" path="res://icon.svg" id="2_rygs1"]
+
+[node name="RoomControlPanel" type="Control"]
+z_index = 5
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gtvl3")
+script = ExtResource("1_ph3em")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 1159.0
+offset_bottom = 141.0
+columns = 10
+
+[node name="RoomName" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Patata"
+
+[node name="RoomDiagram" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_rygs1")
+
+[node name="Controls" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Lock" type="Button" parent="GridContainer/Controls"]
+layout_mode = 2
+text = "Lock Room"
+
+[node name="CheckBox" type="CheckBox" parent="GridContainer/Controls"]
+layout_mode = 2
+text = "Automatic lock"
+
+[connection signal="pressed" from="GridContainer/Controls/Lock" to="." method="_on_lock_pressed"]

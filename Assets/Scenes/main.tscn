@@ -23,15 +23,16 @@ script = ExtResource("1_f8o6k")
 room_name = "Laboratory"
 
 [node name="CoreRoom" parent="Rooms/SpecialRooms" instance=ExtResource("5_acsc0")]
-position = Vector2(3697, -863)
+position = Vector2(3697, -1247)
 metadata/_edit_lock_ = true
 
 [node name="Security Room" parent="Rooms/SpecialRooms" instance=ExtResource("8_f8o6k")]
-position = Vector2(1057, -902)
+position = Vector2(1057, -1286)
 room_name = "Security Room"
+metadata/_edit_lock_ = true
 
 [node name="Server Room" parent="Rooms/SpecialRooms" instance=ExtResource("5_f1jyc")]
-position = Vector2(5857, -911)
+position = Vector2(5857, -1295)
 metadata/_edit_lock_ = true
 
 [node name="ConectorRooms" type="Node2D" parent="Rooms"]
@@ -65,9 +66,10 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Cross C" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
-position = Vector2(1874, -911)
+position = Vector2(1874, -1295)
 room_name = "Cross A"
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="EnemyDetectionZone" parent="Rooms/ConectorRooms/Crosses/Cross C" index="1"]
 visible = true
@@ -105,6 +107,11 @@ position = Vector2(1729, -284)
 room_name = "Corridor A"
 metadata/_edit_group_ = true
 
+[node name="V Corridor E" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1729, -668)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+
 [node name="Horizontal" type="Node2D" parent="Rooms/ConectorRooms"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -115,12 +122,12 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="H Corridor B" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
-position = Vector2(2402, -815)
-metadata/_edit_lock_ = true
+position = Vector2(2402, -1199)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="H Corridor C" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
-position = Vector2(4754, -815)
+position = Vector2(4754, -1199)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 

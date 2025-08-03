@@ -1,9 +1,11 @@
 extends Node2D
 
+class_name infection_manager
+
 var spawn_timer := Timer.new()
 var is_infected : bool = false
 
-signal create_monster
+signal create_monster_in_room
 
 func _ready():
 	spawn_timer.wait_time = 5
@@ -13,19 +15,22 @@ func _ready():
 	add_child(spawn_timer)
 
 func _on_spawn_timer_timeout():
-	print ("Monster Signal emitted")
-	emit_signal("create_monster", self.global_position + Vector2(50, 50)) if is_infected else null
+	if is_infected:
+		#print ("Monster Signal emitted")
+		emit_signal("create_monster_in_room") 
+		infected()
 	
 func infected():
 	if is_infected:
 		return
 	is_infected = true
-	print ("Timer Started")	
+	#print ("Timer Started")
+	#print (self.name)	
 	spawn_timer.start()
 	
 func desinfected():
 	if !is_infected:
 		return
 	is_infected = false
-	print ("Timer Stopped")
+	#print ("Timer Stopped")
 	spawn_timer.stop()

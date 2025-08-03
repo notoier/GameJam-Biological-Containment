@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://bje5w65ntg7hu"]
 
 [ext_resource type="Script" uid="uid://bb0ws1xbutim5" path="res://Assets/Scripts/Rooms/RoomManager.gd" id="1_bgxnk"]
-[ext_resource type="TileSet" uid="uid://dexdu1mevfmvt" path="res://Assets/Sprites/TileSets/LabRoom48px.tres" id="1_rmhto"]
+[ext_resource type="TileSet" uid="uid://dexdu1mevfmvt" path="res://Assets/Sprites/TileSets/Lab48px.tres" id="1_rmhto"]
 [ext_resource type="Texture2D" uid="uid://b2y2nbopmwxoa" path="res://Assets/Textures/Light/RoomStatusLight.tres" id="2_r4gyr"]
 [ext_resource type="PackedScene" uid="uid://cn8bjrlx4u5ym" path="res://Assets/Scenes/Objects/puerta_vertical.tscn" id="2_roq8t"]
 
@@ -10,6 +10,7 @@ size = Vector2(577.5, 864)
 
 [node name="Server Room" type="Node2D" groups=["Rooms"]]
 script = ExtResource("1_bgxnk")
+room_name = "Server Room"
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -53,6 +54,7 @@ texture = ExtResource("2_r4gyr")
 position = Vector2(-73, 394)
 
 [node name="EnemyDetectionZone" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionZone"]
 position = Vector2(239.25, 480)

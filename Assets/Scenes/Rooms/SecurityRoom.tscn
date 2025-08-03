@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://cc5vdbonl30vm"]
+[gd_scene load_steps=7 format=4 uid="uid://cc5vdbonl30vm"]
 
-[ext_resource type="TileSet" uid="uid://dexdu1mevfmvt" path="res://Assets/Sprites/TileSets/LabRoom48px.tres" id="1_dfbgc"]
+[ext_resource type="TileSet" uid="uid://dexdu1mevfmvt" path="res://Assets/Sprites/TileSets/Lab48px.tres" id="1_dfbgc"]
 [ext_resource type="Script" uid="uid://bf8ugfeshleei" path="res://Assets/Scripts/Rooms/SecurityRoom.gd" id="1_gjhy5"]
 [ext_resource type="PackedScene" uid="uid://d33ip5ukxuhac" path="res://Assets/Scenes/Objects/Computer.tscn" id="2_gjhy5"]
 [ext_resource type="Texture2D" uid="uid://b2y2nbopmwxoa" path="res://Assets/Textures/Light/RoomStatusLight.tres" id="3_avyfn"]
@@ -9,14 +9,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gevk1"]
 size = Vector2(531, 701)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3fab6"]
-vertices = PackedVector2Array(566, 347, 746, 347, 746, 437, 566, 437, 566, 614, 58, 614, 58, 154, 566, 154)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6), PackedInt32Array(7, 0, 6)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(48, 144, 576, 144, 576, 337, 756, 337, 756, 447, 576, 447, 576, 624, 48, 624)])
-
 [node name="Security Room" type="Node2D" node_paths=PackedStringArray("computer") groups=["Rooms"]]
 script = ExtResource("1_gjhy5")
 computer = NodePath("TileMap/Decoration/Decoration 2/Computer")
+room_name = "Security Room"
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -47,7 +43,7 @@ tile_map_data = PackedByteArray("AAAFAAIAAAAbAAkAAAAGAAIAAAAcAAkAAAAHAAIAAAAdAAk
 tile_set = ExtResource("1_dfbgc")
 
 [node name="Decoration 2" type="TileMapLayer" parent="TileMap/Decoration"]
-z_index = 2
+z_index = 1
 position = Vector2(45, 4)
 tile_map_data = PackedByteArray("AAAAAAcAAAAeAAYAAGD//wUAAAAYAAMAAHD//wYAAAAXAAMAAHAAAAUAAAAYAAIAAHAAAAYAAAAXAAIAAHA=")
 tile_set = ExtResource("1_dfbgc")
@@ -78,9 +74,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionZone"]
 position = Vector2(311.5, 393.5)
 shape = SubResource("RectangleShape2D_gevk1")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_3fab6")
 
 [connection signal="body_entered" from="EnemyDetectionZone" to="." method="_on_enemy_detection_zone_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionZone" to="." method="_on_enemy_detection_zone_body_exited"]

@@ -17,28 +17,10 @@ script = ExtResource("1_f8o6k")
 
 [node name="Rooms" type="Node2D" parent="."]
 
-[node name="SpecialRooms" type="Node2D" parent="Rooms"]
-
-[node name="Lab" parent="Rooms/SpecialRooms" instance=ExtResource("2_elf4b")]
-room_name = "Laboratory"
-
-[node name="CoreRoom" parent="Rooms/SpecialRooms" instance=ExtResource("5_acsc0")]
-position = Vector2(3697, -1247)
-metadata/_edit_lock_ = true
-
-[node name="Security Room" parent="Rooms/SpecialRooms" instance=ExtResource("8_f8o6k")]
-position = Vector2(1057, -1286)
-room_name = "Security Room"
-metadata/_edit_lock_ = true
-
-[node name="Server Room" parent="Rooms/SpecialRooms" instance=ExtResource("5_f1jyc")]
-position = Vector2(5857, -1295)
-metadata/_edit_lock_ = true
-
 [node name="ConectorRooms" type="Node2D" parent="Rooms"]
 position = Vector2(-1, 0)
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="T-Shape" type="Node2D" parent="Rooms/ConectorRooms"]
 z_index = 1
@@ -50,39 +32,33 @@ position = Vector2(1826, 1506)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Crosses" type="Node2D" parent="Rooms/ConectorRooms"]
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Cross A" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
-position = Vector2(97, 881)
-room_name = "Cross A"
-metadata/_edit_group_ = true
-
-[node name="Cross B" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
-position = Vector2(1874, 881)
-room_name = "Cross A"
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="Cross C" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
-position = Vector2(1874, -1295)
-room_name = "Cross A"
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="EnemyDetectionZone" parent="Rooms/ConectorRooms/Crosses/Cross C" index="1"]
-visible = true
-
-[node name="RoomLight" parent="Rooms/ConectorRooms/Crosses/Cross C" index="2"]
-visible = true
-
-[node name="Left" parent="Rooms/ConectorRooms/Crosses/Cross C/Doors" index="1"]
-visible = false
-
 [node name="Vertical" type="Node2D" parent="Rooms/ConectorRooms"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="V Corridor E" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1728, -659)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor D" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1728, -274)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor C" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1728, 111)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="V Corridor B" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
+position = Vector2(1728, 496)
+room_name = "Corridor A"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="V Corridor A" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
 position = Vector2(-48, 496)
@@ -90,27 +66,24 @@ room_name = "Corridor A"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="V Corridor B" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
-position = Vector2(1729, 494)
-room_name = "Corridor A"
+[node name="Crosses" type="Node2D" parent="Rooms/ConectorRooms"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Cross A" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(97, 881)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="V Corridor C" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
-position = Vector2(1729, 106)
-room_name = "Corridor A"
+[node name="Cross B" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(1873, 881)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="V Corridor D" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
-position = Vector2(1729, -284)
-room_name = "Corridor A"
+[node name="Cross C" parent="Rooms/ConectorRooms/Crosses" instance=ExtResource("4_rvsrt")]
+position = Vector2(1873, -1283)
 metadata/_edit_group_ = true
-
-[node name="V Corridor E" parent="Rooms/ConectorRooms/Vertical" instance=ExtResource("4_guoxd")]
-position = Vector2(1729, -668)
-room_name = "Corridor A"
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Horizontal" type="Node2D" parent="Rooms/ConectorRooms"]
 metadata/_edit_lock_ = true
@@ -118,31 +91,55 @@ metadata/_edit_group_ = true
 
 [node name="H Corridor A" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
 position = Vector2(625, 977)
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="H Corridor B" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
-position = Vector2(2402, -1199)
+position = Vector2(2401, -1187)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="H Corridor C" parent="Rooms/ConectorRooms/Horizontal" instance=ExtResource("9_vlji8")]
-position = Vector2(4754, -1199)
+position = Vector2(4754, -1168)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Monster" parent="." instance=ExtResource("5_rvsrt")]
-position = Vector2(-220, 462)
-scale = Vector2(2.5, 2.5)
-collision_mask = 2
+[node name="SpecialRooms" type="Node2D" parent="Rooms"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Lab" parent="Rooms/SpecialRooms" instance=ExtResource("2_elf4b")]
+
+[node name="CoreRoom" parent="Rooms/SpecialRooms" instance=ExtResource("5_acsc0")]
+position = Vector2(3628, -1272)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Security Room" parent="Rooms/SpecialRooms" instance=ExtResource("8_f8o6k")]
+position = Vector2(1056, -1286)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Server Room" parent="Rooms/SpecialRooms" instance=ExtResource("5_f1jyc")]
+position = Vector2(5857, -1295)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="player" parent="." instance=ExtResource("2_qplxx")]
 z_index = 2
-position = Vector2(255, 757)
+position = Vector2(1929, -348)
 scale = Vector2(3.25, 3.25)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(1.25, 1.25)
 
-[editable path="Rooms/ConectorRooms/Crosses/Cross A"]
-[editable path="Rooms/ConectorRooms/Crosses/Cross C"]
+[node name="Enemies" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(220, 1224)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Monster" parent="Enemies" instance=ExtResource("5_rvsrt")]
+position = Vector2(-15, 196)
+
+[node name="UI" type="Node2D" parent="."]

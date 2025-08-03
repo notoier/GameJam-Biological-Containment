@@ -8,12 +8,17 @@
 
 config_version=5
 
+[addons]
+
+git_describe/commit_hash="98534590157210d0d4980b82a8412312539cd463"
+
 [application]
 
 config/name="GameJam: Biological Containment"
 run/main_scene="uid://dvcs8rytilv66"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+config/git_describe="9853459"
 
 [display]
 
@@ -32,6 +37,17 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/git_describe/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Assets/Audio/": "purple",
+"res://Assets/Scenes/": "blue",
+"res://Assets/Scripts/": "teal",
+"res://Assets/Sprites/": "pink",
+"res://Assets/Textures/": "orange",
+"res://Assets/UI/": "yellow"
+}
 
 [global_group]
 

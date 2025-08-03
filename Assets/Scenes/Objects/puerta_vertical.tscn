@@ -187,8 +187,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsh6n"]
 size = Vector2(32, 260)
 
-[node name="Puerta_Vertical" type="StaticBody2D"]
-collision_mask = 7
+[node name="Puerta_Vertical" type="Node2D"]
 script = ExtResource("1_r0t8f")
 metadata/open = false
 
@@ -204,11 +203,16 @@ sprite_frames = SubResource("SpriteFrames_u6pev")
 animation = &"open"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, 81)
+position = Vector2(0, 81)
 sprite_frames = SubResource("SpriteFrames_b35bo")
 animation = &"open"
 
-[node name="DoorCollider" type="CollisionShape2D" parent="."]
+[node name="Obstacle" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-17, 141, 17, 141, 18, -103, -16, -103)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="DoorCollider" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_bsh6n")
 debug_color = Color(0.831, 0.001, 0.944, 0.541)
 

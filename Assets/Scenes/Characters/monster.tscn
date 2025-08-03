@@ -258,3 +258,5 @@ animation = &"walk_down"
 frame_progress = 0.566414
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 10.0
+simplify_path = true

@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var area = $Area2D
 @onready var detectionArea = $Area2D/DetectionArea
-@onready var doorCollider = $DoorCollider
+@onready var doorCollider = $StaticBody2D/DoorCollider
+@onready var obstacle = $Obstacle
 
 @onready var anim1 = $AnimatedSprite2D
 @onready var anim2 = $AnimatedSprite2D2
@@ -43,6 +44,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		# Disable door collision
 		doorCollider.set_deferred("disabled", true)
+		obstacle.set_deferred("avoidance_enabled", false)
 		open = true
 		
 
@@ -52,6 +54,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		
 		doorCollider.set_deferred("disabled", false)
 		open = false
+		obstacle.set_deferred("avoidance_enabled", true)
 		
 func play_animation(string: String)	-> void:
 	anim1.play(string)

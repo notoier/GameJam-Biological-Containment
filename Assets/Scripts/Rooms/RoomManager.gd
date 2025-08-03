@@ -1,4 +1,4 @@
-extends "res://Assets/Scripts/Rooms/Infection.gd"
+extends Node2D
 
 @onready var roomLight = $RoomLight
 @onready var area = $EnemyDetectionZone
@@ -7,12 +7,21 @@ extends "res://Assets/Scripts/Rooms/Infection.gd"
 
 @export var room_name: String
 
+var infection : infection_manager
+
 enum RoomState {UNTOUCHED, CLEAN, INFECTED, SEALED}
 
 var pre_state : RoomState = RoomState.UNTOUCHED # Default state 
 
 var enemyInside : bool = false
 var infectionTime : float = 5.0
+var alreadyChecking : bool = false
+
+signal create_monster
+
+#-----------------------
+# COLORS
+#-----------------------
 
 const Colors := {
 	INFECTED = Color(0.885, 0.183, 0.13, 1), # Bright Red
@@ -21,6 +30,11 @@ const Colors := {
 	UNTOUCHED = Color(0.75, 0.8, 0.5, 1), # Yellow-ish, pretty much a normal light
 }
 
+
+#-----------------------
+# COLOR AND ROOM.STATE CONNECTION
+#-----------------------
+
 const STATE_COLORS := {
 	RoomState.UNTOUCHED: Colors.UNTOUCHED,
 	RoomState.CLEAN: Colors.CLEAN,
@@ -28,8 +42,9 @@ const STATE_COLORS := {
 	RoomState.SEALED: Colors.SEALED
 }
 
-func get_room_name() -> String:
-	return room_name
+#-----------------------
+# STATE SETTER
+#-----------------------
 
 @export var state: RoomState:
 	set(value):
@@ -37,46 +52,93 @@ func get_room_name() -> String:
 		state = value
 		if roomLight:
 			update_light()
-		
+
+#-----------------------
+# GETTERS 
+#-----------------------
+
+func get_room_name() -> String:
+	return room_name
+
+#-----------------------
+# INITIALIZE
+#-----------------------
+
 func _ready():
-	super._ready() # Initialize everything in infection.gd
+	
+	_init_infection()
 	_layer_draw_order()	
 	update_light()
+
+func _init_infection():
+	 # Initialize everything in infection.gd
+	infection = infection_manager.new()
+	infection.create_monster_in_room.connect(_on_create_monster_in_room)	
+	add_child(infection)
 	
+#-----------------------
+# TILE MAP LAYER DRAW ORDER
+#-----------------------
+
 func _layer_draw_order():
 	var tileMapLayers = tilemap.get_children()
 	for layer in tileMapLayers:
 		match layer.name:
-			"Floor": layer.set_deferred("z_index", 0)
-			"Inside Walls": layer.set_deferred("z_index", 1)
-			"Ceiling Walls": layer.set_deferred("z_index", 3)
-			"Outside Walls": layer.set_deferred("z_index", 5)
-			"Decoration": layer.set_deferred("z_index", 1)
-			_: layer.set_deferred("z_index", 1)
+			"Floor": 
+				layer.set_deferred("z_index", 0)
+				layer.set_deferred("navigation_enabled", false)
+				
+			"Inside Walls": 
+				layer.set_deferred("z_index", 1)
+				layer.set_deferred("navigation_enabled", false)
+				
+			"Ceiling Walls": 
+				layer.set_deferred("z_index", 3)
+				layer.set_deferred("navigation_enabled", false)
+				
+			"Outside Walls": 
+				layer.set_deferred("z_index", 5)
+				layer.set_deferred("navigation_enabled", false)
+				
+			"Decoration": 
+				layer.set_deferred("z_index", 1)
+				layer.set_deferred("navigation_enabled", false)
+				
+			"NPC Path":
+				layer.set_deferred("z_index", -8)
+				layer.set_deferred("navigation_enabled", true)
+				
+			_: 
+				layer.set_deferred("z_index", 1)
+				layer.set_deferred("navigation_enabled", false)
 	
-func _on_enemy_detection_zone_body_entered(_body: Node2D) -> void:
-	enemyInside = true
-	_checkTimeForInfection()
-
-func _on_enemy_detection_zone_body_exited(_body: Node2D) -> void:
-	enemyInside = false
-	pass # Replace with function body.
-		
-func _checkTimeForInfection() -> void:
-	if  enemyInside and state != RoomState.INFECTED and state != RoomState.SEALED:
-		await get_tree().create_timer(infectionTime).timeout # Wait 5 seconds
-		state = RoomState.INFECTED
-		infected()
-		
-			
 # No use yet	
 func get_special_object_data(object_name: String):
 	var object = get_node(object_name)
 	return object
-	
+
+#-----------------------
+# LIGHT	
+#-----------------------
+
 func update_light():	
 	for light in roomLight.get_children():
-		light.color = STATE_COLORS.get(state, Colors.UNTOUCHED) # UNTOUCHED -> Valor por defecto
+		light.color = STATE_COLORS.get(state, Colors.UNTOUCHED) # UNTOUCHED -> Valor por defecto	
+
+#-----------------------
+# INFECTION		
+#-----------------------
+
+func _checkTimeForInfection() -> void:
+	if  enemyInside and state != RoomState.INFECTED and state != RoomState.SEALED and !alreadyChecking:
+		alreadyChecking = true
+		await get_tree().create_timer(infectionTime).timeout # Wait 5 seconds
+		state = RoomState.INFECTED
+		infection.infected()
+
+#-----------------------	
+# LOCKDOWN
+#-----------------------
 
 func lock_room():
 	var doors = doorNode.get_children()
@@ -92,3 +154,17 @@ func unlock_room():
 	for door in doors:
 		door.unlock()
 	return		
+
+#-----------------------
+# SIGNALS
+#-----------------------
+
+func _on_enemy_detection_zone_body_entered(_body: Node2D) -> void:
+	enemyInside = true
+	_checkTimeForInfection()
+
+func _on_enemy_detection_zone_body_exited(_body: Node2D) -> void:
+	enemyInside = false
+	
+func _on_create_monster_in_room():
+	emit_signal("create_monster", self.global_position + Vector2(50, 50))

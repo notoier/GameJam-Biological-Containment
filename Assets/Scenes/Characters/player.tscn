@@ -201,8 +201,7 @@ script = ExtResource("1_7elgb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -6)
 sprite_frames = SubResource("SpriteFrames_5pruv")
-animation = &"walk_right"
-frame = 2
+frame = 3
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
